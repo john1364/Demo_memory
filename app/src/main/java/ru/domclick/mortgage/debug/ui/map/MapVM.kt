@@ -1,4 +1,4 @@
-package ru.domclick.mortgage.debug
+package ru.domclick.mortgage.debug.ui.map
 
 import androidx.lifecycle.ViewModel
 import ru.dgis.sdk.compose.map.MapComposableState
@@ -14,6 +14,7 @@ class MapVM : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
+        state?.map?.value?.close()
         state = null
     }
 }
