@@ -6,8 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -15,15 +14,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import ru.domclick.mortgage.debug.ui.empty.EmptyActivity
-import ru.domclick.mortgage.debug.ui.map.MapActivity
+import ru.domclick.mortgage.debug.ui.search.SearchActivity
 import ru.domclick.mortgage.debug.ui.theme.MyApplicationTheme
 
 var MAP_SIZE = 0
 
 class MainActivity : ComponentActivity() {
 
-    @OptIn(ExperimentalLayoutApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,28 +29,18 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                 ) { innerPadding ->
-                    FlowRow(
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    Column(
+                        modifier = Modifier.padding(innerPadding),
                         verticalArrangement = Arrangement.spacedBy(8.dp),
                     ) {
+                        Text("Главный экран приложения")
                         Button(
-                            modifier = Modifier.padding(innerPadding),
                             onClick = {
                                 this@MainActivity.startActivity(
-                                    Intent(this@MainActivity, MapActivity::class.java)
+                                    Intent(this@MainActivity, SearchActivity::class.java)
                                 )
                             }) {
                             Text("Карта")
-                        }
-
-                        Button(
-                            modifier = Modifier.padding(innerPadding),
-                            onClick = {
-                                this@MainActivity.startActivity(
-                                    Intent(this@MainActivity, EmptyActivity::class.java)
-                                )
-                            }) {
-                            Text("Пустой экран")
                         }
                     }
                 }
